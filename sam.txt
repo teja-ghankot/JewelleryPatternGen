@@ -1,0 +1,66 @@
+AWS Handbook:
+
+1) Go to course invitation, and click on get started. You will be redirected to the course page where they will ask to log in with your canvas account. If you don't have one then create.
+
+2) You will see your dashboard, now click on Modules -> Launch AWS Academy Learner Lab.
+
+3) Click on Start Lab and what for the AWS signal to turn green. After Green click on that AWS.
+
+4) Redirected to a new page, Click on EC2 -> Launch Instance.
+
+5) Give a name, select Ubuntu (in options select anything in the free tier list), Make sure AMI arch is 64 bit, Instance type (anything in free tier) t3 micro (if free), Click on create new Key Pair.
+
+6) Give a key pair name, Select RSA and .pem file format.
+
+7) Go to your File Explorer -> Desktop -> Create a folder named AWS and now store the .pem file in this AWS folder.
+
+8) In Network settings check all boxes (Allow SSH, HTTPS, HTTP).
+
+9) Select Storage 8GB
+
+10) Click on Launch instance. You will see a green color message.
+
+11) Go to instances, you can see your instance, so wait for it to be initialized. You will see 2 or 3 tests passes.
+
+12) Now check the box and click on connect. This means your instance is now running on server.
+
+13) You will be redirected to a page where they will ask you to Connect to instance, click on SSH client and copy the full ssh -i command.
+
+14) Now copy the .pem file path in our AWS folder. Open Powershell in administrator mode and paste our path.
+
+cd (path)
+
+15) now paste that ssh command you copied.
+
+16) run the pasted ssh -i command in the terminal.
+
+17) next run the following commands:
+
+-> sudo apt update (updates all softwares in Ubuntu)
+-> sudo apt-get install docker.io
+-> sudo apt install git
+-> sudo apt install nano
+
+18) Open Maven WEB PROJECT REPO from GitHub and copy the http link.
+
+19) Clone the Repo (git clone httpslink) . Then type ls (you will see all folers nd files) type cd (your maven projectnsme)
+
+20) Now type -> nano Dockerfile -> A GNU nano version appears and write the following data and click crtl+o enter and then ctrl-x:
+	FROM tomcat:9-jdk11
+	COPY target/*.wat/usr/local/tomcat/webapps
+
+21) type sudo docker build -t yourmavenprojectname .
+
+22) Now to run the container, type:
+
+sudo docker run -d -p 9090:8080 yourmavenprojectname
+
+23) Now go to your instance there you will see your IPv4 address copy it and paste it in a new tab URL. If your web app isn't loaded of your url starts with https, then type http in place of https.
+
+24) If your app is not running goto security  and Click on security group -> Click on edit inbound rules -> Click on add rule give port as 9090 and 0.0.0.0/0 click on save.
+
+25) Now refresh the page to check whether the web page has loaded or not. If loaded then you have successfully deployed your maven web project 🥳
+
+26) ***** IMPORTANT ******
+
+after showing the deployment don't forget to run the command sudo docker ps, to stop the container. Then go to your instance dashboard click on instance state dropdown and then select Terminate (delete) instance. Then go to your AWS Academy Learner Lab and click on End Lab
